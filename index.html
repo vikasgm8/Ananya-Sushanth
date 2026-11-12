@@ -4,19 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Golden Story 🤎</title>
+  <meta name="theme-color" content="#351d11">
+  <title>Ananya & Sushanth | Our Golden Story</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="flower-layer" id="flowerLayer"></div>
+  <div id="flowerLayer"></div>
 
   <main>
+
+    <!-- PASSWORD SCREEN -->
     <section class="screen" id="loginScreen">
-      <div class="top-flower">❀</div>
+
+      <div class="decor decor-top">❀</div>
+
       <p class="eyebrow">A SPECIAL LITTLE SURPRISE</p>
 
       <h1>Our Golden<br>Story</h1>
+
       <div class="heart">♡</div>
 
       <p class="subtitle">
@@ -26,34 +33,53 @@
 
       <div class="divider">✦ ❀ ✦</div>
 
-      <p class="password-title">Enter our secret password</p>
+      <p class="password-title">Enter your secret password</p>
 
       <input
         type="password"
         id="password"
-        placeholder="Your secret password"
+        placeholder="Enter password"
+        autocomplete="off"
       >
 
-      <button onclick="unlock()">Unlock Our Story ♡</button>
+      <button id="unlockButton">Unlock Our Story ♡</button>
 
-      <p id="message"></p>
-      <div class="bottom-flower">❀</div>
+      <p id="message" aria-live="polite"></p>
+
+      <div class="decor decor-bottom">❀</div>
+
     </section>
 
-    <section class="screen welcome hidden" id="welcomeScreen">
-      <div class="bloom">🌸</div>
+
+    <!-- WELCOME SCREEN -->
+    <section class="screen hidden" id="welcomeScreen">
+
+      <div class="welcome-flower">🌸</div>
+
       <p class="eyebrow">THE WAIT IS OVER</p>
-      <h1>Welcome,<br>Ananya & Sushanth</h1>
+
+      <h1 class="welcome-title">
+        Welcome,<br>
+        Ananya & Sushanth
+      </h1>
+
       <p class="subtitle">
         This little world holds<br>
         your memories, your moments<br>
         and your beautiful story.
       </p>
+
       <div class="divider">✦ ❀ ✦</div>
-      <button onclick="enterStory()">Enter Our World →</button>
+
+      <p class="small-note">Made with love, just for you two.</p>
+
+      <button id="enterButton">Enter Our World →</button>
+
     </section>
+
   </main>
 
   <script src="script.js"></script>
+
 </body>
 </html>
