@@ -2,85 +2,867 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#351d11">
-  <title>Ananya & Sushanth | Our Golden Story</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#32190e">
+<title>Ananya & Sushanth | Our Golden Story</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  min-height:100vh;
+  font-family:Georgia,serif;
+  color:#f8dfbd;
+  background:
+    radial-gradient(ellipse at 50% 40%,#a96735 0%,transparent 65%),
+    linear-gradient(145deg,#1d100a,#492718 48%,#82502c 75%,#28140c);
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.3;
+  background-image:radial-gradient(#ffdc9c 1px,transparent 2px);
+  background-size:65px 75px;
+}
+
+#petals{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:20;
+}
+
+.petal{
+  position:absolute;
+  top:-40px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(600deg);opacity:0}
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.12)}
+}
+
+.page{
+  display:none;
+  min-height:100svh;
+  padding:35px 22px;
+  align-items:center;
+  justify-content:center;
+}
+
+.page.active{
+  display:flex;
+  animation:appear .8s ease;
+}
+
+.card{
+  width:100%;
+  max-width:410px;
+  padding:38px 25px;
+  text-align:center;
+  border:1px solid #e6bb8180;
+  border-radius:25px;
+  background:linear-gradient(145deg,#633a25ed,#29170ff5);
+  box-shadow:0 15px 45px #130a0790,inset 0 0 30px #e6b67512;
+}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:4px;
+  color:#eac28c;
+  margin-bottom:22px;
+}
+
+h1{
+  color:#ffe0b2;
+  font-size:39px;
+  font-weight:normal;
+  font-style:italic;
+  line-height:1.3;
+}
+
+h2{
+  color:#f8d6a6;
+  font-size:25px;
+  font-weight:normal;
+  font-style:italic;
+  margin-bottom:18px;
+}
+
+p{
+  line-height:1.8;
+  font-size:16px;
+}
+
+.subtitle{
+  color:#e9c9a5;
+  margin:20px 0;
+}
+
+.divider{
+  color:#e8b777;
+  letter-spacing:8px;
+  margin:23px 0;
+}
+
+.heart{
+  font-size:38px;
+  color:#f5bd79;
+  margin:10px;
+  animation:pulse 2s infinite;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  margin-top:14px;
+  border:1px solid #f2d09b;
+  border-radius:30px;
+  background:linear-gradient(120deg,#c78340,#f4d19a,#c78340);
+  color:#482718;
+  font-family:Georgia,serif;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:active{transform:scale(.97)}
+
+.secondary{
+  background:transparent;
+  color:#f8d7aa;
+  border:1px solid #d7a86c;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  margin:12px 0;
+  border:1px solid #d7ac78;
+  border-radius:30px;
+  background:#fff0d9;
+  text-align:center;
+  font-size:16px;
+  color:#54331e;
+}
+
+.small{
+  font-size:13px;
+  color:#e4c19a;
+}
+
+.hidden{display:none!important}
+
+/* PAGE 1 */
+
+.password-flower{
+  font-size:38px;
+  margin-bottom:15px;
+}
+
+/* PAGE 2 */
+
+.big-flower{
+  font-size:76px;
+  margin-bottom:20px;
+  animation:pulse 2s infinite;
+}
+
+/* PAGE 3 */
+
+.envelope{
+  position:relative;
+  width:230px;
+  height:145px;
+  margin:35px auto;
+  background:linear-gradient(145deg,#f2d3a4,#b87945);
+  border-radius:5px;
+  box-shadow:0 12px 30px #140a0790;
+}
+
+.envelope:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#e9bd86;
+  clip-path:polygon(0 0,100% 0,50% 60%);
+  transform-origin:top;
+  transition:transform .8s;
+  z-index:2;
+}
+
+.envelope.open:before{
+  transform:rotateX(180deg);
+}
+
+.seal{
+  position:absolute;
+  z-index:3;
+  top:58%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#772e20;
+  border:2px solid #e5b67b;
+  color:#ffdb9e;
+  font-size:22px;
+}
+
+.letter{
+  padding:20px;
+  background:#f3dfbf;
+  color:#65452b;
+  border-radius:8px;
+  line-height:1.9;
+  text-align:left;
+  animation:appear .8s ease;
+}
+
+/* PAGE 4 */
+
+.gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+  margin:25px 0;
+}
+
+.photo{
+  min-height:155px;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  border:5px solid #f4dfbf;
+  border-bottom:20px solid #f4dfbf;
+  border-radius:3px;
+  color:#fff2dc;
+  text-shadow:0 2px 5px #000;
+  background:linear-gradient(145deg,#c58a53,#56331e);
+  box-shadow:0 6px 15px #140b08;
+  font-size:13px;
+}
+
+.photo:nth-child(2){transform:rotate(3deg)}
+.photo:nth-child(3){transform:rotate(-3deg)}
+
+.photo img{
+  width:100%;
+  height:105px;
+  object-fit:cover;
+}
+
+/* PAGE 5 */
+
+.timeline{
+  text-align:left;
+  border-left:2px solid #e6b875;
+  margin:25px 0 25px 12px;
+  padding-left:23px;
+}
+
+.event{
+  margin-bottom:25px;
+  position:relative;
+}
+
+.event:before{
+  content:"♥";
+  position:absolute;
+  left:-34px;
+  color:#ffce83;
+  font-size:18px;
+}
+
+.event strong{
+  display:block;
+  color:#ffdfb1;
+  margin-bottom:5px;
+}
+
+/* PAGE 6 */
+
+.letter-paper{
+  padding:24px;
+  background:#f1dfc3;
+  color:#60412a;
+  border-radius:5px;
+  text-align:left;
+  line-height:2;
+  box-shadow:0 10px 25px #160b0750;
+}
+
+.letter-paper p{margin-bottom:15px}
+
+/* PAGE 7 */
+
+.quiz-options{
+  display:grid;
+  gap:10px;
+  margin-top:20px;
+}
+
+.quiz-options button{
+  margin:0;
+  background:#e9c18e;
+}
+
+.quiz-result{
+  margin-top:18px;
+  color:#ffdda9;
+  min-height:30px;
+}
+
+/* PAGE 8 */
+
+.reason{
+  text-align:left;
+  padding:14px;
+  margin:10px 0;
+  border:1px solid #d9ad78;
+  border-radius:12px;
+  background:#70452b70;
+}
+
+/* PAGE 9 */
+
+.memory-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:25px 0;
+}
+
+.memory-card{
+  height:85px;
+  margin:0;
+  padding:0;
+  font-size:29px;
+  border-radius:12px;
+  background:#e7bd8a;
+  color:#603b22;
+}
+
+.memory-card.matched{
+  background:#a9a078;
+  opacity:.8;
+}
+
+/* PAGE 10 */
+
+.secret{
+  background:#f0d8b5;
+  color:#65432a;
+  padding:24px;
+  margin:15px 0;
+  border-radius:12px;
+  font-style:italic;
+  font-size:18px;
+}
+
+/* PAGE 11 */
+
+.final-heart{
+  font-size:90px;
+  animation:pulse 2s infinite;
+}
+
+.final-message{
+  font-style:italic;
+  font-size:19px;
+  line-height:2;
+}
+
+/* PAGE 12 */
+
+.thank-you{
+  font-size:65px;
+  margin:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:380px){
+  h1{font-size:33px}
+  .card{padding:32px 19px}
+  .photo{min-height:130px}
+}
+</style>
 </head>
 
 <body>
 
-  <div id="flowerLayer"></div>
+<div id="petals"></div>
 
-  <main>
+<!-- PAGE 1: PASSWORD -->
 
-    <!-- PASSWORD SCREEN -->
-    <section class="screen" id="loginScreen">
+<section class="page active" id="page1">
+<div class="card">
+  <div class="password-flower">❀</div>
+  <p class="eyebrow">A SPECIAL LITTLE SURPRISE</p>
+  <h1>Our Golden<br>Story</h1>
+  <div class="heart">♡</div>
+  <p class="subtitle">A little world, made<br>just for two...</p>
+  <div class="divider">✦ ❀ ✦</div>
+  <p class="small">Enter your secret password</p>
+  <input id="password" type="password" placeholder="Secret password">
+  <button onclick="unlock()">Unlock Our Story ♡</button>
+  <p id="error" class="small"></p>
+</div>
+</section>
 
-      <div class="decor decor-top">❀</div>
+<!-- PAGE 2: WELCOME -->
 
-      <p class="eyebrow">A SPECIAL LITTLE SURPRISE</p>
+<section class="page" id="page2">
+<div class="card">
+  <div class="big-flower">🌸</div>
+  <p class="eyebrow">THE WAIT IS OVER</p>
+  <h1>Welcome,<br>Ananya & Sushanth</h1>
+  <p class="subtitle">
+    This little world holds your memories,
+    your moments and your beautiful story.
+  </p>
+  <div class="divider">✦ ❀ ✦</div>
+  <button onclick="go(3)">Enter Our World →</button>
+</div>
+</section>
 
-      <h1>Our Golden<br>Story</h1>
+<!-- PAGE 3: SECRET INVITATION -->
 
-      <div class="heart">♡</div>
+<section class="page" id="page3">
+<div class="card">
+  <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+  <h1>A Secret<br>Invitation ♡</h1>
+  <p class="subtitle">Some little surprises are waiting to be opened...</p>
 
-      <p class="subtitle">
-        A little world, made<br>
-        just for two...
-      </p>
+  <div class="envelope" id="envelope">
+    <div class="seal">♥</div>
+  </div>
 
-      <div class="divider">✦ ❀ ✦</div>
+  <button id="openLetter" onclick="openEnvelope()">Open My Letter ♡</button>
 
-      <p class="password-title">Enter your secret password</p>
+  <div id="invitationLetter" class="letter hidden">
+    <h2>Dear Ananya & Sushanth,</h2>
+    <p>
+      Every beautiful story has little moments
+      that make it special.
+      This little journey is all about yours.
+      Every memory, every smile and every moment
+      deserves a special place.
+    </p>
+    <p style="text-align:right">With love, always 🤎</p>
+    <button onclick="go(4)">See Our Memories →</button>
+  </div>
+</div>
+</section>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter password"
-        autocomplete="off"
-      >
+<!-- PAGE 4: PHOTO GALLERY -->
 
-      <button id="unlockButton">Unlock Our Story ♡</button>
+<section class="page" id="page4">
+<div class="card">
+  <p class="eyebrow">A JOURNEY OF LITTLE MOMENTS</p>
+  <h1>Our Memories ♡</h1>
+  <p class="subtitle">Every picture has a story to tell.</p>
 
-      <p id="message" aria-live="polite"></p>
+  <div class="gallery">
+    <div class="photo">📷<span>Our first memory</span></div>
+    <div class="photo">📷<span>That special day</span></div>
+    <div class="photo">📷<span>Our favourite moment</span></div>
+    <div class="photo">📷<span>Just us two</span></div>
+    <div class="photo">📷<span>A beautiful memory</span></div>
+    <div class="photo">📷<span>Forever remembered</span></div>
+  </div>
 
-      <div class="decor decor-bottom">❀</div>
+  <p class="small">We'll add your real photos here.</p>
+  <button onclick="go(5)">Continue →</button>
+</div>
+</section>
 
-    </section>
+<!-- PAGE 5: TIMELINE -->
 
+<section class="page" id="page5">
+<div class="card">
+  <p class="eyebrow">EVERY MOMENT MATTERS</p>
+  <h1>Our Timeline ♡</h1>
+  <p class="subtitle">Little moments that became big memories.</p>
 
-    <!-- WELCOME SCREEN -->
-    <section class="screen hidden" id="welcomeScreen">
+  <div class="timeline">
+    <div class="event">
+      <strong>The Day We Met</strong>
+      <p class="small">A beautiful beginning...</p>
+    </div>
+    <div class="event">
+      <strong>Our First Conversation</strong>
+      <p class="small">When everything started changing.</p>
+    </div>
+    <div class="event">
+      <strong>Our First Special Moment</strong>
+      <p class="small">A memory to keep forever.</p>
+    </div>
+    <div class="event">
+      <strong>Our Beautiful Journey</strong>
+      <p class="small">And so many moments still to come.</p>
+    </div>
+  </div>
 
-      <div class="welcome-flower">🌸</div>
+  <button onclick="go(6)">Next Memory →</button>
+</div>
+</section>
 
-      <p class="eyebrow">THE WAIT IS OVER</p>
+<!-- PAGE 6: LOVE LETTER -->
 
-      <h1 class="welcome-title">
-        Welcome,<br>
-        Ananya & Sushanth
-      </h1>
+<section class="page" id="page6">
+<div class="card">
+  <p class="eyebrow">WORDS FROM THE HEART</p>
+  <h1>A Letter For You ♡</h1>
+  <p class="subtitle">A little message from Ananya...</p>
 
-      <p class="subtitle">
-        This little world holds<br>
-        your memories, your moments<br>
-        and your beautiful story.
-      </p>
+  <div class="letter-paper">
+    <p>Dear Sushanth,</p>
+    <p>
+      This space is for all the things I sometimes
+      cannot express in words. Thank you for being
+      part of my life and making so many memories
+      with me.
+    </p>
+    <p>
+      [Ananya's personal letter will go here.]
+    </p>
+    <p style="text-align:right">Yours lovingly,<br>Ananya ♡</p>
+  </div>
 
-      <div class="divider">✦ ❀ ✦</div>
+  <button onclick="go(7)">Next Surprise →</button>
+</div>
+</section>
 
-      <p class="small-note">Made with love, just for you two.</p>
+<!-- PAGE 7: QUIZ -->
 
-      <button id="enterButton">Enter Our World →</button>
+<section class="page" id="page7">
+<div class="card">
+  <p class="eyebrow">LET'S HAVE SOME FUN</p>
+  <h1>A Little Quiz ♡</h1>
+  <p class="subtitle">How well do you know each other?</p>
 
-    </section>
+  <h2 id="question">Who is more talkative?</h2>
 
-  </main>
+  <div class="quiz-options" id="options">
+    <button onclick="answer('Ananya')">Ananya</button>
+    <button onclick="answer('Sushanth')">Sushanth</button>
+    <button onclick="answer('Both')">Both of us</button>
+  </div>
 
-  <script src="script.js"></script>
+  <p id="quizResult" class="quiz-result"></p>
+  <button class="secondary" onclick="nextQuestion()">Next Question →</button>
+  <button onclick="go(8)">Continue →</button>
+</div>
+</section>
+
+<!-- PAGE 8: REASONS -->
+
+<section class="page" id="page8">
+<div class="card">
+  <p class="eyebrow">LITTLE THINGS, BIG FEELINGS</p>
+  <h1>Reasons We Love ♡</h1>
+  <p class="subtitle">Some things are simply irreplaceable.</p>
+
+  <div class="reason">♡ The way we make each other smile.</div>
+  <div class="reason">♡ The memories we create together.</div>
+  <div class="reason">♡ The little things only we understand.</div>
+  <div class="reason">♡ The laughter we share.</div>
+  <div class="reason">♡ Being ourselves together.</div>
+
+  <button onclick="go(9)">Play a Little Game →</button>
+</div>
+</section>
+
+<!-- PAGE 9: MEMORY GAME -->
+
+<section class="page" id="page9">
+<div class="card">
+  <p class="eyebrow">A LITTLE CHALLENGE</p>
+  <h1>Memory Game ♡</h1>
+  <p class="subtitle">Find all the matching pairs!</p>
+
+  <div class="memory-grid" id="memoryGrid"></div>
+  <p id="moves" class="small">Moves: 0</p>
+  <p id="gameResult" class="quiz-result"></p>
+
+  <button class="secondary" onclick="startGame()">Restart Game ↻</button>
+  <button onclick="go(10)">Next Surprise →</button>
+</div>
+</section>
+
+<!-- PAGE 10: HIDDEN MESSAGE -->
+
+<section class="page" id="page10">
+<div class="card">
+  <p class="eyebrow">JUST BETWEEN US</p>
+  <h1>A Hidden Message ♡</h1>
+  <p class="subtitle">Tap the little notes to reveal something special.</p>
+
+  <button onclick="reveal(0)">Open Secret Note 1 💌</button>
+  <div class="secret hidden" id="secret0">
+    The smallest moments with you can become my favourite memories.
+  </div>
+
+  <button onclick="reveal(1)">Open Secret Note 2 💌</button>
+  <div class="secret hidden" id="secret1">
+    You make ordinary days feel a little more special.
+  </div>
+
+  <button onclick="reveal(2)">Open Secret Note 3 💌</button>
+  <div class="secret hidden" id="secret2">
+    Our story is made of little moments worth remembering.
+  </div>
+
+  <button onclick="go(11)">One Last Surprise →</button>
+</div>
+</section>
+
+<!-- PAGE 11: FINAL SURPRISE -->
+
+<section class="page" id="page11">
+<div class="card">
+  <p class="eyebrow">A LITTLE PROMISE</p>
+  <h1>Our Golden Story</h1>
+  <div class="final-heart">♡</div>
+
+  <p class="final-message">
+    No matter how many pages this little world has,
+    the most beautiful memories are the ones
+    you create together.
+  </p>
+
+  <div class="divider">✦ ❀ ✦</div>
+  <p class="subtitle">Here's to all the moments yet to come.</p>
+
+  <button onclick="go(12)">The Last Page →</button>
+</div>
+</section>
+
+<!-- PAGE 12: THANK YOU -->
+
+<section class="page" id="page12">
+<div class="card">
+  <p class="eyebrow">UNTIL THE NEXT MEMORY</p>
+  <div class="thank-you">🕯️</div>
+  <h1>Thank You ♡</h1>
+
+  <p class="final-message">
+    Thank you for being a part of this little world.
+    Every memory matters, every moment counts,
+    and your story is still being written.
+  </p>
+
+  <div class="divider">✦ ❀ ✦</div>
+
+  <p style="font-style:italic">With love, Ananya 🤎</p>
+
+  <button onclick="go(1)">Visit Our Story Again ↻</button>
+</div>
+</section>
+
+<script>
+/* PAGE NAVIGATION */
+
+function go(number){
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  document.getElementById("page"+number).classList.add("active");
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* PASSWORD */
+
+function unlock(){
+  const password=document.getElementById("password").value;
+  const error=document.getElementById("error");
+
+  if(password!=="vikas"){
+    error.textContent="That's not the secret password. Try again 🤎";
+    return;
+  }
+
+  error.textContent="Opening your golden world...";
+
+  createFlowers();
+
+  setTimeout(()=>go(2),2000);
+}
+
+document.getElementById("password").addEventListener("keydown",e=>{
+  if(e.key==="Enter")unlock();
+});
+
+/* FLOWERS */
+
+function createFlowers(){
+  const symbols=["🌸","🌷","🌼","🌺","🤎"];
+
+  for(let i=0;i<55;i++){
+    const flower=document.createElement("span");
+    flower.className="petal";
+    flower.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    flower.style.left=Math.random()*100+"vw";
+    flower.style.animationDuration=3+Math.random()*5+"s";
+    flower.style.animationDelay=Math.random()*2+"s";
+    flower.style.fontSize=16+Math.random()*20+"px";
+
+    document.getElementById("petals").appendChild(flower);
+    setTimeout(()=>flower.remove(),9000);
+  }
+}
+
+/* ENVELOPE */
+
+function openEnvelope(){
+  document.getElementById("envelope").classList.add("open");
+
+  document.getElementById("invitationLetter").classList.remove("hidden");
+
+  document.getElementById("openLetter").textContent="Letter Opened ♡";
+  document.getElementById("openLetter").disabled=true;
+}
+
+/* QUIZ */
+
+const questions=[
+  "Who is more talkative?",
+  "Who laughs more?",
+  "Who takes longer to reply?",
+  "Who is more playful?",
+  "Who remembers more little details?"
+];
+
+let questionIndex=0;
+
+function answer(choice){
+  document.getElementById("quizResult").textContent=
+    "You chose "+choice+"! 🤎";
+}
+
+function nextQuestion(){
+  questionIndex=(questionIndex+1)%questions.length;
+
+  document.getElementById("question").textContent=
+    questions[questionIndex];
+
+  document.getElementById("quizResult").textContent="";
+}
+
+/* MEMORY GAME */
+
+const symbols=["♡","🌸","🌷","⭐","🤎","🌼"];
+let first=null;
+let second=null;
+let locked=false;
+let moves=0;
+let matched=0;
+
+function startGame(){
+  const cards=[...symbols,...symbols].sort(()=>Math.random()-.5);
+
+  first=null;
+  second=null;
+  locked=false;
+  moves=0;
+  matched=0;
+
+  document.getElementById("moves").textContent="Moves: 0";
+  document.getElementById("gameResult").textContent="";
+
+  const grid=document.getElementById("memoryGrid");
+  grid.innerHTML="";
+
+  cards.forEach((symbol,index)=>{
+    const button=document.createElement("button");
+    button.className="memory-card";
+    button.textContent="?";
+    button.dataset.symbol=symbol;
+
+    button.onclick=()=>flipCard(button);
+
+    grid.appendChild(button);
+  });
+}
+
+function flipCard(card){
+  if(locked||card.classList.contains("matched")||
+     card===first)return;
+
+  card.textContent=card.dataset.symbol;
+
+  if(!first){
+    first=card;
+    return;
+  }
+
+  second=card;
+  moves++;
+
+  document.getElementById("moves").textContent="Moves: "+moves;
+
+  if(first.dataset.symbol===second.dataset.symbol){
+    first.classList.add("matched");
+    second.classList.add("matched");
+    matched++;
+    resetCards();
+
+    if(matched===symbols.length){
+      document.getElementById("gameResult").textContent=
+        "You found every pair! Beautiful teamwork! 🤎";
+    }
+  }else{
+    locked=true;
+
+    setTimeout(()=>{
+      first.textContent="?";
+      second.textContent="?";
+      resetCards();
+    },850);
+  }
+}
+
+function resetCards(){
+  first=null;
+  second=null;
+  locked=false;
+}
+
+/* HIDDEN NOTES */
+
+function reveal(number){
+  document.getElementById("secret"+number).classList.remove("hidden");
+}
+
+/* INITIAL GAME */
+
+startGame();
+</script>
 
 </body>
 </html>
-
