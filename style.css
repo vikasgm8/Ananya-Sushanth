@@ -7,12 +7,12 @@
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
   font-family: Georgia, serif;
-  color: #fce8c9;
+  color: #f8dfba;
   background:
-    radial-gradient(ellipse at 50% 45%, rgba(227, 157, 69, .4), transparent 55%),
-    linear-gradient(145deg, #24140e, #643719 48%, #a45e27 75%, #32190e);
+    radial-gradient(ellipse at 50% 45%, #a65f2d 0%, transparent 65%),
+    linear-gradient(145deg, #21120c, #492719 45%, #75401f 75%, #2b160d);
+  overflow-x: hidden;
 }
 
 body::before {
@@ -20,174 +20,205 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 15% 15%, #f8bd6540 1px, transparent 3px),
-    radial-gradient(circle at 80% 30%, #ffe0a040 1px, transparent 3px),
-    radial-gradient(circle at 40% 80%, #ffca7040 1px, transparent 3px);
-  background-size: 90px 100px, 120px 130px, 150px 120px;
-  opacity: .8;
+  background-image:
+    radial-gradient(#ffd99a 1px, transparent 1.5px),
+    radial-gradient(#e9a95e 1px, transparent 2px);
+  background-size: 75px 85px, 115px 125px;
+  background-position: 10px 20px, 40px 60px;
+  opacity: .3;
 }
 
 main {
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 24px;
+  justify-content: center;
+  padding: 22px;
 }
 
 .screen {
   position: relative;
   width: 100%;
   max-width: 390px;
-  padding: 42px 27px;
+  min-height: 570px;
+  padding: 48px 27px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  border: 1px solid #e9bd7b80;
-  border-radius: 24px;
-  background: linear-gradient(
-    145deg,
-    rgba(100, 53, 26, .94),
-    rgba(43, 25, 17, .96)
-  );
-  box-shadow:
-    0 0 35px #e9a84b30,
-    inset 0 0 35px #f6c47712;
-  animation: appear 1s ease;
   overflow: hidden;
+
+  border: 1px solid #e4b77980;
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(91, 48, 25, .96),
+      rgba(39, 22, 15, .97)
+    );
+
+  box-shadow:
+    0 15px 50px #160b0790,
+    inset 0 0 35px #e7b36b12;
+
+  animation: screenAppear .8s ease;
 }
 
+/* IMPORTANT: hidden screens stay hidden */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .eyebrow {
+  color: #e9bd83;
   font-size: 10px;
   letter-spacing: 4px;
-  color: #e9bd81;
-  margin-bottom: 20px;
+  line-height: 1.8;
+  margin-bottom: 24px;
 }
 
 h1 {
-  font-size: 39px;
+  color: #ffdfb1;
+  font-size: 43px;
   font-weight: normal;
   font-style: italic;
-  line-height: 1.25;
-  color: #ffdfae;
-  text-shadow: 0 0 15px #e9b16a50;
+  line-height: 1.2;
+  text-shadow: 0 0 20px #e5a85b50;
 }
 
 .heart {
-  font-size: 40px;
-  color: #f6bf76;
-  margin: 8px;
+  color: #f4bf7b;
+  font-size: 43px;
+  margin: 12px 0;
   animation: heartbeat 2s infinite;
 }
 
 .subtitle {
+  color: #e9cba7;
   font-size: 17px;
-  line-height: 1.8;
-  color: #edcfaa;
-  margin: 18px 0;
+  line-height: 1.9;
+  margin: 12px 0;
 }
 
 .divider {
-  color: #e8b66f;
+  color: #e8b66e;
   letter-spacing: 8px;
+  font-size: 19px;
   margin: 22px 0;
 }
 
 .password-title {
-  color: #eac99d;
+  color: #edcfaa;
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 input {
   width: 100%;
-  padding: 15px;
+  padding: 16px;
+  margin-bottom: 18px;
   border-radius: 30px;
-  border: 1px solid #d8a96b;
-  background: #f8e7ce;
-  color: #56351f;
+  border: 1px solid #d5a56d;
+  background: #f8e8d2;
+  color: #59351e;
   text-align: center;
   font-size: 16px;
   outline: none;
-  margin-bottom: 18px;
 }
 
 input::placeholder {
-  color: #987451;
+  color: #a17a53;
+}
+
+input:focus {
+  box-shadow: 0 0 15px #f1c17d70;
 }
 
 button {
   width: 100%;
-  padding: 15px;
-  border: 1px solid #f5ce91;
+  padding: 16px;
   border-radius: 30px;
-  color: #492b19;
-  background: linear-gradient(120deg, #d99a4d, #f6d19a, #d99a4d);
+  border: 1px solid #f5d29c;
+  background: linear-gradient(120deg, #ca8741, #f4d19a, #ca8741);
+  color: #482817;
   font-family: Georgia, serif;
   font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 22px #e9ae5a45;
   cursor: pointer;
-  box-shadow: 0 0 18px #e9ae5a40;
-  transition: transform .3s;
+  transition: transform .2s;
 }
 
 button:active {
-  transform: scale(.95);
+  transform: scale(.96);
 }
 
 #message {
-  font-size: 13px;
+  min-height: 20px;
   margin-top: 14px;
-  color: #ffd49b;
+  font-size: 13px;
+  color: #ffd39b;
 }
 
-.top-flower,
-.bottom-flower {
+.decor {
   position: absolute;
-  color: #e9ae65;
-  font-size: 40px;
+  color: #e9b574;
+  font-size: 38px;
   opacity: .8;
 }
 
-.top-flower {
-  top: 8px;
-  right: 18px;
+.decor-top {
+  top: 12px;
+  right: 20px;
 }
 
-.bottom-flower {
-  bottom: 5px;
-  left: 18px;
+.decor-bottom {
+  bottom: 8px;
+  left: 20px;
 }
 
-.welcome {
-  border-radius: 24px;
-}
-
-.bloom {
+.welcome-flower {
   font-size: 75px;
   margin-bottom: 20px;
-  animation: heartbeat 3s infinite;
+  animation: heartbeat 2.5s infinite;
 }
 
-.flower-layer {
+.welcome-title {
+  font-size: 34px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #e6c49b;
+  margin-bottom: 25px;
+}
+
+#flowerLayer {
   position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 5;
+  z-index: 10;
 }
 
 .petal {
   position: absolute;
-  top: -40px;
-  animation: fall linear forwards;
+  top: -50px;
+  animation: falling linear forwards;
+  filter: drop-shadow(0 0 5px #f6c17a);
 }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes falling {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(600deg);
+    opacity: 0;
+  }
 }
 
 @keyframes heartbeat {
@@ -195,14 +226,28 @@ button:active {
   50% { transform: scale(1.1); }
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(500deg);
+@keyframes screenAppear {
+  from {
     opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media(max-width: 380px) {
-  h1 { font-size: 34px; }
-  .screen { padding: 36px 21px; }
+@media (max-width: 380px) {
+  .screen {
+    min-height: 530px;
+    padding: 38px 22px;
+  }
+
+  h1 {
+    font-size: 37px;
+  }
+
+  .welcome-title {
+    font-size: 30px;
+  }
 }
